@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  server-lsim:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: server-lsim
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=development
