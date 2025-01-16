@@ -17,10 +17,15 @@ FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
 
+EXPOSE 8761
+
 # Copiar o JAR da etapa de build
 COPY --from=builder /app/build/libs/server-0.0.1-SNAPSHOT.jar /app.jar
 
-EXPOSE 8761
+# Copiar o script wait-for-it.sh para dentro do container
+COPY wait-for-it.sh /app/wait-for-it.sh
+
+# Tornar o script executável
+RUN chmod +x /app/wait-for-it.sh
 
 ENTRYPOINT ["java", "-jar", "/app.jar"]
-
