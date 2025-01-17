@@ -1,0 +1,16 @@
+services:
+  server-lsim:
+    image: server-lsim
+    container_name: server-lsim
+    build:
+      context: .
+    ports:
+      - "8761:8761"
+    networks:
+      - lsim-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+networks:
+  lsim-network:
+    external: true
